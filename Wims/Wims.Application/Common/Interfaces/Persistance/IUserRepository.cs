@@ -10,7 +10,8 @@ namespace Wims.Application.Common.Interfaces.Persistance
     public interface IUserRepository
     {
         User? GetUserByEmail(string email);
-
         void Add(User user);
+        void Update(User user);
+        void Delete(User user);
     }
 }
