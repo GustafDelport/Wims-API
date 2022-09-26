@@ -2,11 +2,11 @@
 
 namespace Wims.Api.Controllers
 {
-    [Route("[controller]")]
-    public class DinnersController : ApiController
+    [Route("Product")]
+    public class ProductController : ApiController
     {
         [HttpGet]
-        public IActionResult ListDinners()
+        public IActionResult GetProductsAsync()
         {
             return Ok(Array.Empty<string>());
         }
