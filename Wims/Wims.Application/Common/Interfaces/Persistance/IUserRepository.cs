@@ -9,9 +9,11 @@ namespace Wims.Application.Common.Interfaces.Persistance
 {
     public interface IUserRepository
     {
-        User? GetUserByEmail(string email);
-        void Add(User user);
-        void Update(User user);
-        void Delete(User user);
+        Domain.Entities.User? GetUserByEmail(string email);
+        Domain.Entities.User? GetUserById(Guid Id);
+        ICollection<Domain.Entities.User> GetAll();
+        void Add(Domain.Entities.User user);
+        void Update(Domain.Entities.User user);
+        void Delete(Guid Id);
     }
 }

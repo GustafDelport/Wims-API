@@ -11,8 +11,9 @@ namespace Wims.Application.Common.Interfaces.Persistance
     {
         Category? GetCategoryByName(string name);
         Category? GetCategoryById(Guid Id);
+        ICollection<Category> GetAll();
         void Add(Category category);
         void Update(Category category);
-        void Delete(Category category);
+        void Delete(Guid Id);
     }
 }

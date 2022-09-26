@@ -1,33 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Wims.Application.Common.Interfaces.Persistance;
+﻿using Wims.Application.Common.Interfaces.Persistance;
 using Wims.Domain.Entities;
 
 namespace Wims.Infrastructure.Persistance
 {
     public class CategoryRepository : ICategoryRepository
     {
+        private static readonly List<Category> _categories = new();
+
+        public ICollection<Category> GetAll()
+        {
+            return _categories;
+        }
+
         public Category? GetCategoryById(Guid Id)
         {
-            throw new NotImplementedException();
+            return _categories.FirstOrDefault(c => c.Id == Id);
         }
 
         public Category? GetCategoryByName(string name)
         {
-            throw new NotImplementedException();
+            return _categories.FirstOrDefault(c => c.Name == name);
         }
 
         public void Add(Category category)
         {
-            throw new NotImplementedException();
+            _categories.Add(category);
         }
 
-        public void Delete(Category category)
+        public void Delete(Guid Id)
         {
-            throw new NotImplementedException();
+            _categories.Remove(GetCategoryById(Id));
         }
 
         public void Update(Category category)

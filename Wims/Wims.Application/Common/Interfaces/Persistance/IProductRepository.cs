@@ -11,8 +11,9 @@ namespace Wims.Application.Common.Interfaces.Persistance
     {
         Product? GetProductByName(string Name);
         Product? GetProductById(Guid Id);
+        ICollection<Product> GetAll();
         void Add(Product product);
         void Update(Product product);
-        void Delete(Product product);
+        void Delete(Guid Id);
     }
 }

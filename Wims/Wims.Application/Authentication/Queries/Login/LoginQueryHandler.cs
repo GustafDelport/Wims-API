@@ -27,7 +27,7 @@ namespace Wims.Application.Authentication.Queries.Login
             await Task.CompletedTask;
 
             //Check if User Exists
-            if (_userRepository.GetUserByEmail(query.Email) is not User user)
+            if (_userRepository.GetUserByEmail(query.Email) is not Domain.Entities.User user)
             {
                 return Errors.Authentication.InvalidCredentials;
             }

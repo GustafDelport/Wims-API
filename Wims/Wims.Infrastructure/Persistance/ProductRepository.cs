@@ -1,33 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Wims.Application.Common.Interfaces.Persistance;
+﻿using Wims.Application.Common.Interfaces.Persistance;
 using Wims.Domain.Entities;
 
 namespace Wims.Infrastructure.Persistance
 {
     public class ProductRepository : IProductRepository
     {
+        private static readonly List<Product> _products = new();
+
+        public ICollection<Product> GetAll()
+        {
+            return _products;
+        }
+
         public Product? GetProductById(Guid Id)
         {
-            throw new NotImplementedException();
+            return _products.FirstOrDefault(p => p.Id == Id);
         }
 
         public Product? GetProductByName(string Name)
         {
-            throw new NotImplementedException();
+            return _products.FirstOrDefault(p => p.Name == Name);
         }
 
         public void Add(Product product)
         {
-            throw new NotImplementedException();
+            _products.Add(product);
         }
 
-        public void Delete(Product product)
+        public void Delete(Guid Id)
         {
-            throw new NotImplementedException();
+            _products.Remove(GetProductById(Id));
         }
 
         public void Update(Product product)
