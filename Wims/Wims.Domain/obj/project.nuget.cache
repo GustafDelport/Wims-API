@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Zb2ZA1NW15iZAk1k1b0Lxrh/4JogNLwkmXAt59k4ZXnEkidg5Xo2Ptvimsolhtw7BDmAHV+ZTyCuDfhNceVHaA==",
+  "dgSpecHash": "ELdfU3dwd17E/OPubq0tbe8HVzw9jUYNA5yCylcnH3MvP0/rz1zMrcFRdsAZ1G48CxMmLILuxsDrKa2lbP/Y1Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\gustaf.delport\\OneDrive - Entelect Software (Pty) Ltd\\Documents\\Pet Projects\\Wims\\Wims-API\\Wims\\Wims.Domain\\Wims.Domain.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\gustaf.delport\\.nuget\\packages\\erroror\\1.0.0\\erroror.1.0.0.nupkg.sha512"
+    "C:\\Users\\gustaf.delport\\.nuget\\packages\\erroror\\1.0.1\\erroror.1.0.1.nupkg.sha512"
   ],
   "logs": []
 }

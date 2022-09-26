@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "hW4WQPb1yNj7QyM86ZFNXwJxnDz6OSgkFz5W+/7ZnaWI01aoaTB5tedChsGT+VCysiOFjvmytALrbIbuavVPeQ==",
+  "dgSpecHash": "y2WV61VRGUCwct3YlAC6nmmLEMmIlvmOff5Co/BjtQGF0pwhvv7/Xmlnx62pr/EgH9v2qkitxeq44/smLD91hA==",
   "success": true,
   "projectFilePath": "C:\\Users\\gustaf.delport\\OneDrive - Entelect Software (Pty) Ltd\\Documents\\Pet Projects\\Wims\\Wims-API\\Wims\\Wims.Infrastructure\\Wims.Infrastructure.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\gustaf.delport\\.nuget\\packages\\erroror\\1.0.0\\erroror.1.0.0.nupkg.sha512",
+    "C:\\Users\\gustaf.delport\\.nuget\\packages\\erroror\\1.0.1\\erroror.1.0.1.nupkg.sha512",
     "C:\\Users\\gustaf.delport\\.nuget\\packages\\fluentresults\\3.13.0\\fluentresults.3.13.0.nupkg.sha512",
     "C:\\Users\\gustaf.delport\\.nuget\\packages\\fluentvalidation\\11.2.1\\fluentvalidation.11.2.1.nupkg.sha512",
     "C:\\Users\\gustaf.delport\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.2\\fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
