@@ -51,7 +51,7 @@
           "dependencies": {
             "ErrorOr": {
               "target": "Package",
-              "version": "[1.0.0, )"
+              "version": "[1.0.1, )"
             },
             "FluentResults": {
               "target": "Package",
@@ -137,7 +137,7 @@
           "dependencies": {
             "ErrorOr": {
               "target": "Package",
-              "version": "[1.0.0, )"
+              "version": "[1.0.1, )"
             }
           },
           "imports": [
