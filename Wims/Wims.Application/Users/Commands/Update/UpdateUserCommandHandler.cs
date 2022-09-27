@@ -30,10 +30,10 @@ namespace Wims.Application.Users.Commands.Update
                 return Errors.User.NotFound;
             }
 
-            user.FirstName = !string.IsNullOrEmpty(user.FirstName) ? command.FirstName : user.FirstName; 
-            user.LastName = !string.IsNullOrEmpty(user.LastName) ? command.LastName : user.LastName;
-            user.Password = !string.IsNullOrEmpty(user.Password) ? command.Password : user.Password;
-            user.Email = !string.IsNullOrEmpty(user.Email) ? command.Email : user.Email;
+            user.FirstName = string.IsNullOrEmpty(command.FirstName) ? user.FirstName : command.FirstName; 
+            user.LastName = string.IsNullOrEmpty(command.LastName) ? user.LastName : command.LastName;
+            user.Password = string.IsNullOrEmpty(command.Password) ? user.Password : command.Password;
+            user.Email = string.IsNullOrEmpty(command.Email) ? user.Email : command.Email;
 
             try
             {
