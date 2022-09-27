@@ -29,12 +29,20 @@ namespace Wims.Infrastructure.Persistance
 
         public void Delete(Guid Id)
         {
-            _categories.Remove(GetCategoryById(Id));
+            var entity = GetCategoryById(Id);
+            _categories.Remove(entity);
         }
 
         public void Update(Category category)
         {
-            throw new NotImplementedException();
+            var entity = GetCategoryById(category.Id);
+
+            entity.Name = category.Name;
+            entity.Description = category.Description;
+
+            //Temp solutions while Ef is not hooked up
+            _categories.Remove(entity);
+            _categories.Add(entity);
         }
     }
 }

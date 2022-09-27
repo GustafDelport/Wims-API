@@ -44,7 +44,6 @@ namespace Wims.Api.Controllers
             return response.Match(
                 response => Ok(response),
                 errors => Problem(errors));
-
         }
 
         [HttpDelete("Delete")]

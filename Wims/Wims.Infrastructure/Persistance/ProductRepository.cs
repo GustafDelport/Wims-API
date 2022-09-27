@@ -29,12 +29,24 @@ namespace Wims.Infrastructure.Persistance
 
         public void Delete(Guid Id)
         {
-            _products.Remove(GetProductById(Id));
+            var entity = GetProductById(Id);
+            _products.Remove(entity);
         }
 
         public void Update(Product product)
         {
-            throw new NotImplementedException();
+            var entity = GetProductById(product.Id);
+
+            entity.Name = product.Name;
+            entity.Description = product.Description;
+            entity.CostPrice = product.CostPrice;
+            entity.SellingPrice = product.SellingPrice;
+            entity.QtyInStock = product.QtyInStock;
+            entity.Category = product.Category;
+
+            //Temp solutions while Ef is not hooked up
+            _products.Remove(entity);
+            _products.Add(entity);
         }
     }
 }

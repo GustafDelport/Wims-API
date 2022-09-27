@@ -14,6 +14,10 @@ namespace Wims.Domain.Common.Errors
             public static Error DuplicateCategory => Error.Conflict(
                 code: "Category.DuplicateCategory",
                 description: "Category already exists.");
+
+            public static Error NotFound => Error.NotFound(
+                code: "Category.NotFound",
+                description: "Category does not exists.");
         }
     }
     

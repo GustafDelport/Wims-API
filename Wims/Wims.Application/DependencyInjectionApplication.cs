@@ -1,8 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using MediatR;
-using Wims.Application.Authentication.Commands.Register;
-using ErrorOr;
-using Wims.Application.Authentication.Common;
 using Wims.Application.Common.Behaviors;
 using FluentValidation;
 using System.Reflection;
