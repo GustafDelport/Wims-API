@@ -19,6 +19,7 @@ namespace Wims.Application.Categories.Commands.Insert
         public async Task<ErrorOr<CategoryResult>> Handle(InsertCategoryCommand command, CancellationToken cancellationToken)
         {
             await Task.CompletedTask;
+
             if (_categoryRepository.GetCategoryByName(command.Name) is not null)
             {
                 return Errors.Category.DuplicateCategory;
@@ -33,14 +34,13 @@ namespace Wims.Application.Categories.Commands.Insert
             try
             {
                 _categoryRepository.Add(category);
+                return new CategoryResult(category, "Inserted");
             }
             catch (Exception)
             {
 
                 return Errors.Category.Conflict;
             }
-            
-            return new CategoryResult(category, "Inserted");
         }
     }
 }

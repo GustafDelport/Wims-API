@@ -19,12 +19,4 @@
     <ProjectReference Include="..\Wims.Domain\Wims.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Products\Commands\Insert\" />
-    <Folder Include="Products\Commands\Delete\" />
-    <Folder Include="Products\Commands\Update\" />
-    <Folder Include="Products\Queries\RetrieveProducts\" />
-    <Folder Include="Products\Queries\RetrieveProduct\" />
-  </ItemGroup>
-
 </Project>
