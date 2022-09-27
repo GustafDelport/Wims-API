@@ -2,7 +2,7 @@
 using Wims.Application.Users.Common;
 using Wims.Contracts.User.Responses;
 
-namespace Wims.Api.Common.Mapping
+namespace Wims.Api.Common.Mapping.User
 {
     public class UserMappingConfig : IRegister
     {

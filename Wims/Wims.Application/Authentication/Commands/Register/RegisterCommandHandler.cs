@@ -32,7 +32,7 @@ namespace Wims.Application.Authentication.Commands.Register
             }
 
             //Persits user to repository
-            var user = new Domain.Entities.User
+            var user = new User
             {
                 FirstName = command.FirstName,
                 LastName = command.LastName,

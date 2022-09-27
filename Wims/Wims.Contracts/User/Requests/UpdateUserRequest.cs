@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Wims.Contracts.User.Requests
 {
-    public record UpdateRequest(
+    public record UpdateUserRequest(
         Guid Id,
         string? FirstName,
         string? LastName,

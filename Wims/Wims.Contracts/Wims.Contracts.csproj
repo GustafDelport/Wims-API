@@ -11,8 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Category\Requests\" />
-    <Folder Include="Category\Responses\" />
     <Folder Include="Product\Responses\" />
     <Folder Include="Product\Requests\" />
   </ItemGroup>

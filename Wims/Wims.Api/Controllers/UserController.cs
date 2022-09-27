@@ -59,7 +59,7 @@ namespace Wims.Api.Controllers
         }
 
         [HttpPut("Update")]
-        public async Task<IActionResult> UpdateUserAsync(UpdateRequest request)
+        public async Task<IActionResult> UpdateUserAsync(UpdateUserRequest request)
         {
             var command = _mapper.Map<UpdateUserCommand>(request);
 

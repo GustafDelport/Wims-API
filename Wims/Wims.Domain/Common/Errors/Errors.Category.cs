@@ -18,6 +18,10 @@ namespace Wims.Domain.Common.Errors
             public static Error NotFound => Error.NotFound(
                 code: "Category.NotFound",
                 description: "Category does not exists.");
+
+            public static Error Conflict => Error.Conflict(
+                code: "Category.Conflict",
+                description: "There was an error processing your request");
         }
     }
     

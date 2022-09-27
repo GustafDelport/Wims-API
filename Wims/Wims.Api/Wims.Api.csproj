@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <Folder Include="Common\Errors\" />
+    <Folder Include="Common\Mapping\Product\" />
   </ItemGroup>
 
 </Project>

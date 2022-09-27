@@ -4,7 +4,7 @@ using Wims.Application.Authentication.Common;
 using Wims.Application.Authentication.Queries.Login;
 using Wims.Contracts.Authentication;
 
-namespace Wims.Api.Common.Mapping
+namespace Wims.Api.Common.Mapping.Authentication
 {
     public class AuthenticationMappingConfig : IRegister
     {

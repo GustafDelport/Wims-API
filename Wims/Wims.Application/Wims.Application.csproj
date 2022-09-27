@@ -20,11 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Categories\Commands\Delete\" />
-    <Folder Include="Categories\Commands\Insert\" />
-    <Folder Include="Categories\Commands\Update\" />
-    <Folder Include="Categories\Queries\RetrieveCategories\" />
-    <Folder Include="Categories\Queries\RetrieveCategory\" />
     <Folder Include="Products\Commands\Insert\" />
     <Folder Include="Products\Commands\Delete\" />
     <Folder Include="Products\Commands\Update\" />
