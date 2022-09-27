@@ -13,6 +13,8 @@ namespace Wims.Api.Common.Mapping.Product
                 .Map(dest => dest.CategoryId, src => src.Product.Category.Id)
                 .Map(dest => dest.CategoryName, src => src.Product.Category.Name)
                 .Map(dest => dest.CategoryDescription, src => src.Product.Category.Description);
+
+            //Figure out how the mappings work
         }
     }
 }
