@@ -19,6 +19,7 @@ namespace Wims.Application.Users.Commands.Delete
         public async Task<ErrorOr<UserResult>> Handle(DeleteUserCommand command, CancellationToken cancellationToken)
         {
             await Task.CompletedTask;
+
             if (_userRepository.GetUserById(command.Id) is not User user)
             {
                 return Errors.User.NotFound;

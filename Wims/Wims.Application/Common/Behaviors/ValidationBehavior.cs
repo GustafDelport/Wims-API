@@ -1,7 +1,6 @@
 ﻿using ErrorOr;
 using FluentValidation;
 using MediatR;
-using Wims.Application.Authentication.Commands.Register;
 
 namespace Wims.Application.Common.Behaviors
 {
