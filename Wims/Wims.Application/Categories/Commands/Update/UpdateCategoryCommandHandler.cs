@@ -25,6 +25,11 @@ namespace Wims.Application.Categories.Commands.Update
                 return Errors.Category.NotFound;
             }
 
+            if (_categoryRepository.GetCategoryByName(command.Name) is not null)
+            {
+                return Errors.Category.DuplicateCategory;
+            }
+
             category.Name = string.IsNullOrEmpty(command.Name) ? category.Name : command.Name;
             category.Description = string.IsNullOrEmpty(command.Description) ? category.Description : command.Description;
 

@@ -43,7 +43,6 @@ namespace Wims.Application.Categories.Commands.Delete
                     return Errors.Category.Conflict;
                 }
             }
-            throw new NotImplementedException();
         }
     }
 }
