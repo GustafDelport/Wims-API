@@ -1,6 +1,8 @@
+using Microsoft.EntityFrameworkCore;
 using Wims.Api;
 using Wims.Application;
 using Wims.Infrastructure;
+using Wims.Infrastructure.Database_Access;
 
 internal class Program
 {
@@ -12,6 +14,9 @@ internal class Program
                 .AddPresentation()
                 .AddApplication()
                 .AddInfrastructure(builder.Configuration);
+
+            builder.Services.AddDbContext<DatabaseContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("WimsDatabase")));
         }
 
         var app = builder.Build();
