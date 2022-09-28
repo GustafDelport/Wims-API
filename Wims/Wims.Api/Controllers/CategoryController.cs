@@ -43,7 +43,7 @@ namespace Wims.Api.Controllers
             ErrorOr<CategoriesResult> response = await _mediator.Send(new RetrieveCategoriesQuery());
 
             return response.Match(
-                response => Ok(_mapper.Map<CategoryResponse>(response)),
+                response => Ok(response),
                 errors => Problem(errors));
         }
 

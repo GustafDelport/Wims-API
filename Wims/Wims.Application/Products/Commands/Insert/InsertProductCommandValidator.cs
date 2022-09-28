@@ -33,15 +33,10 @@ namespace Wims.Application.Products.Commands.Insert
                 .GreaterThanOrEqualTo(0).WithMessage("The Quantity in stock should not be a negative number.");
 
 
-            RuleFor(x => x.Category.Name)
+            RuleFor(x => x.CategoryName)
                 .NotEmpty().WithMessage("Category name should not be empty")
                 .MinimumLength(3).WithMessage("Category name should be atleast 3 characters long.")
                 .MaximumLength(15).WithMessage("Category name should be a maximum of 15 characters.");
-
-            RuleFor(c => c.Category.Description)
-                .NotEmpty().WithMessage("Category description should not be empty")
-                .MinimumLength(5).WithMessage("Category description should be atleast 5 characters long.")
-                .MaximumLength(250).WithMessage("Category description should be a maximum of 250 characters.");
         }
     }
 }

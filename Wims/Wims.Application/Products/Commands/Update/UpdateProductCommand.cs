@@ -12,5 +12,5 @@ namespace Wims.Application.Products.Commands.Update
         double SellingPrice,
         double CostPrice,
         int QtyInStock,
-        Category Category) : IRequest<ErrorOr<ProductResult>>;
+        string CategoryName) : IRequest<ErrorOr<ProductResult>>;
 }

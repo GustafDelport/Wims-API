@@ -32,17 +32,19 @@ namespace Wims.Application.Products.Commands.Update
                 return Errors.Product.DuplicateProduct;
             }
 
-            if (_categoryRepository.GetCategoryById(command.Category.Id) is null)
+            if (_categoryRepository.GetCategoryByName(command.CategoryName) is null)
             {
                 return Errors.Category.NotFound;
             }
+
+            var category = _categoryRepository.GetCategoryByName(command.CategoryName);
                 
             product.Name = string.IsNullOrEmpty(command.Name) ? product.Name : command.Name;
             product.Description = string.IsNullOrEmpty(command.Description) ? product.Description : command.Description;
             product.SellingPrice = (product.SellingPrice == command.SellingPrice) ? product.SellingPrice : command.SellingPrice;
             product.CostPrice = (product.CostPrice == command.CostPrice) ? product.CostPrice : command.CostPrice;
             product.QtyInStock = (product.QtyInStock == command.QtyInStock) ? product.QtyInStock : command.QtyInStock;
-            product.Category = (product.Category == command.Category) ? product.Category : command.Category;          
+            product.Category = (product.Category == category) ? product.Category : category;          
 
             try
             {

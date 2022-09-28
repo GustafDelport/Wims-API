@@ -27,10 +27,12 @@ namespace Wims.Application.Products.Commands.Insert
                 return Errors.Product.DuplicateProduct;
             }
 
-            if (_categoryRepository.GetCategoryById(command.Category.Id) is null)
+            if (_categoryRepository.GetCategoryByName(command.CategoryName) is null)
             {
                 return Errors.Category.NotFound;
             }
+
+            var category = _categoryRepository.GetCategoryByName(command.CategoryName);
 
             var product = new Product
             {
@@ -39,7 +41,7 @@ namespace Wims.Application.Products.Commands.Insert
                 SellingPrice = command.SellingPrice,
                 CostPrice = command.CostPrice,
                 QtyInStock = command.QtyInStock,
-                Category = command.Category
+                Category = category
             };
 
             try

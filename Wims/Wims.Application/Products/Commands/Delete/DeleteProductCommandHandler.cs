@@ -36,7 +36,7 @@ namespace Wims.Application.Products.Commands.Delete
                     var temp = product;
 
                     _productRepository.Delete(product.Id);
-                    return new ProductResult(temp, "Deleted")
+                    return new ProductResult(temp, "Deleted");
                 }
                 catch (Exception)
                 {
