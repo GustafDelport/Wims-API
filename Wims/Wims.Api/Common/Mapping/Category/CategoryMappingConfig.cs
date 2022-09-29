@@ -10,6 +10,9 @@ namespace Wims.Api.Common.Mapping.Category
         {
             config.NewConfig<CategoryResult, CategoryResponse>()
                 .Map(dest => dest, src => src.Category);
+
+            config.NewConfig<CategoriesResult, CategoriesResponse>()
+                .Map(dest => dest, src => src.Categories);
         }
     }
 }

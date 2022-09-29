@@ -43,7 +43,7 @@ namespace Wims.Api.Controllers
             ErrorOr<ProductsResult> response = await _mediator.Send(new RetrieveProductsQuery());
 
             return response.Match(
-                response => Ok(response),
+                response => Ok(_mapper.Map<ProductsResponse>(response)),
                 errors => Problem(errors));
         }
 
