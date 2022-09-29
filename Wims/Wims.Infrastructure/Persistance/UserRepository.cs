@@ -1,51 +1,52 @@
 ﻿using Wims.Application.Common.Interfaces.Persistance;
 using Wims.Domain.Entities;
+using Wims.Infrastructure.Database_Access;
 
 namespace Wims.Infrastructure.Persistance
 {
     public class UserRepository : IUserRepository
     {
-        private static readonly List<User> _users = new();
+        private readonly DatabaseContext _context;
+
+        public UserRepository(DatabaseContext context)
+        {
+            _context = context;
+        }
 
         public ICollection<User> GetAll()
         {
-            return _users;
+            return _context.Users.Select(x => x).ToList();
         }
 
-        public User? GetUserById(Guid Id)
+        public User GetUserById(Guid Id)
         {
-            return _users.SingleOrDefault(u => u.Id == Id);
+            return _context.Users.SingleOrDefault(u => u.Id == Id);
         }
 
-        public User? GetUserByEmail(string email)
+        public User GetUserByEmail(string email)
         {
-            return _users.SingleOrDefault(u => u.Email == email);
+            var user = _context.Users.SingleOrDefault(u => u.Email == email);
+            return user;
         }
 
         public void Add(User user)
         {
-            _users.Add(user);
+            _context.Users.Add(user);
+            _context.SaveChanges();
         }
 
         public void Delete(Guid Id)
         {
-            var entity = GetUserById(Id);
+            var entity = _context.Users.SingleOrDefault(u => u.Id == Id);
 
-            _users.Remove(entity);
+            _context.Users.Remove(entity);
+            _context.SaveChanges();
         }
 
         public void Update(User user)
         {
-            var entity = GetUserById(user.Id);
-
-            entity.FirstName = user.FirstName;
-            entity.LastName = user.LastName;
-            entity.Email = user.Email;
-            entity.Password = user.Password;
-
-            //Temp solutions while Ef is not hooked up
-            _users.Remove(entity);
-            _users.Add(entity);
+            _context.Update(user);
+            _context.SaveChanges();
         }
     }
 }

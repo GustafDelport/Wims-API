@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -8,6 +9,7 @@ using Wims.Application.Common.Interfaces.Authentication;
 using Wims.Application.Common.Interfaces.Persistance;
 using Wims.Application.Common.Interfaces.Services;
 using Wims.Infrastructure.Authentication;
+using Wims.Infrastructure.Database_Access;
 using Wims.Infrastructure.Persistance;
 using Wims.Infrastructure.Services;
 
@@ -23,6 +25,9 @@ namespace Wims.Infrastructure
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+
+            services.AddDbContext<DatabaseContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("WimsDatabase")));
 
             return services;
         }

@@ -1,52 +1,51 @@
-﻿using Wims.Application.Common.Interfaces.Persistance;
+﻿using System.Xml.Linq;
+using Wims.Application.Common.Interfaces.Persistance;
 using Wims.Domain.Entities;
+using Wims.Infrastructure.Database_Access;
 
 namespace Wims.Infrastructure.Persistance
 {
     public class ProductRepository : IProductRepository
     {
-        private static readonly List<Product> _products = new();
+        private readonly DatabaseContext _context;
+
+        public ProductRepository(DatabaseContext context)
+        {
+            _context = context;
+        }
 
         public ICollection<Product> GetAll()
         {
-            return _products;
+            return _context.Products.Select(x => x).ToList();
         }
 
         public Product? GetProductById(Guid Id)
         {
-            return _products.FirstOrDefault(p => p.Id == Id);
+            return _context.Products.FirstOrDefault(p => p.Id == Id);
         }
 
         public Product? GetProductByName(string Name)
         {
-            return _products.FirstOrDefault(p => p.Name == Name);
+            return _context.Products.FirstOrDefault(p => p.Name == Name);
         }
 
         public void Add(Product product)
         {
-            _products.Add(product);
+            _context.Products.Add(product);
+            _context.SaveChanges();
         }
 
         public void Delete(Guid Id)
         {
-            var entity = GetProductById(Id);
-            _products.Remove(entity);
+            var entity = _context.Products.FirstOrDefault(p => p.Id == Id);
+            _context.Products.Remove(entity);
+            _context.SaveChanges();
         }
 
         public void Update(Product product)
         {
-            var entity = GetProductById(product.Id);
-
-            entity.Name = product.Name;
-            entity.Description = product.Description;
-            entity.CostPrice = product.CostPrice;
-            entity.SellingPrice = product.SellingPrice;
-            entity.QtyInStock = product.QtyInStock;
-            entity.Category = product.Category;
-
-            //Temp solutions while Ef is not hooked up
-            _products.Remove(entity);
-            _products.Add(entity);
+            _context.Products.Update(product);
+            _context.SaveChanges();
         }
     }
 }
