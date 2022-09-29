@@ -48,7 +48,7 @@ namespace Wims.Api.Controllers
         }
 
         [HttpPost("Insert")]
-        public async Task<IActionResult> InsertCategoryAsync(InsertRequest request)
+        public async Task<IActionResult> InsertCategoryAsync(InsertCategoryRequest request)
         {
             var command = _mapper.Map<InsertCategoryCommand>(request);
 

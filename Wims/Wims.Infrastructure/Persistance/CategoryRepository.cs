@@ -16,17 +16,29 @@ namespace Wims.Infrastructure.Persistance
 
         public ICollection<Category> GetAll()
         {
-            return _context.Categories.Select(x => x).ToList();
+            var categories = _context.Categories
+                .Select(x => x)
+                .ToList();
+
+            return categories;
         }
 
         public Category? GetCategoryById(Guid Id)
         {
-            return _context.Categories.FirstOrDefault(c => c.Id == Id);
+            var category = _context.Categories
+                .Include(c => c.Products)
+                .FirstOrDefault(c => c.Id == Id);
+            
+            return category;
         }
 
-        public Category? GetCategoryByName(string name)
+        public Category? GetCategoryByName(string Name)
         {
-            return _context.Categories.FirstOrDefault(c => c.Name == name);
+            var category = _context.Categories
+                .Include(c => c.Products)
+                .FirstOrDefault(c => c.Name == Name);
+
+            return category;
         }
 
         public void Add(Category category)
@@ -45,11 +57,6 @@ namespace Wims.Infrastructure.Persistance
 
         public void Update(Category category)
         {
-            //var entity = _context.Categories.FirstOrDefault(c => c.Id == category.Id);
-
-            //entity.Name = category.Name;
-            //entity.Description = category.Description;
-
             _context.Categories.Update(category);
             _context.SaveChanges();
         }

@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Xml.Linq;
 using Wims.Application.Common.Interfaces.Persistance;
 using Wims.Domain.Entities;
 using Wims.Infrastructure.Database_Access;
@@ -16,17 +17,30 @@ namespace Wims.Infrastructure.Persistance
 
         public ICollection<Product> GetAll()
         {
-            return _context.Products.Select(x => x).ToList();
+            var products = _context.Products
+                .Include(p => p.Category)
+                .Select(x => x)
+                .ToList();
+
+            return products;
         }
 
         public Product? GetProductById(Guid Id)
         {
-            return _context.Products.FirstOrDefault(p => p.Id == Id);
+            var product = _context.Products
+                .Include(p => p.Category)
+                .FirstOrDefault(x => x.Id == Id);
+
+            return product;
         }
 
         public Product? GetProductByName(string Name)
         {
-            return _context.Products.FirstOrDefault(p => p.Name == Name);
+            var product = _context.Products
+                .Include(p => p.Category)
+                .FirstOrDefault(x => x.Name == Name);
+
+            return product;
         }
 
         public void Add(Product product)
