@@ -15,7 +15,7 @@ namespace Wims.Infrastructure.Persistance
 
         public ICollection<User> GetAll()
         {
-            return (ICollection<User>)_context.Users.Select(x => x);
+            return _context.Users.Select(x => x).ToList();
         }
 
         public User GetUserById(Guid Id)
@@ -32,6 +32,7 @@ namespace Wims.Infrastructure.Persistance
         public void Add(User user)
         {
             _context.Users.Add(user);
+            _context.SaveChanges();
         }
 
         public void Delete(Guid Id)
@@ -39,11 +40,13 @@ namespace Wims.Infrastructure.Persistance
             var entity = _context.Users.SingleOrDefault(u => u.Id == Id);
 
             _context.Users.Remove(entity);
+            _context.SaveChanges();
         }
 
         public void Update(User user)
         {
             _context.Update(user);
+            _context.SaveChanges();
         }
     }
 }

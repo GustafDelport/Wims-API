@@ -16,7 +16,7 @@ namespace Wims.Infrastructure.Persistance
 
         public ICollection<Product> GetAll()
         {
-            return (ICollection<Product>)_context.Products.Select(x => x);
+            return _context.Products.Select(x => x).ToList();
         }
 
         public Product? GetProductById(Guid Id)
@@ -32,26 +32,20 @@ namespace Wims.Infrastructure.Persistance
         public void Add(Product product)
         {
             _context.Products.Add(product);
+            _context.SaveChanges();
         }
 
         public void Delete(Guid Id)
         {
             var entity = _context.Products.FirstOrDefault(p => p.Id == Id);
             _context.Products.Remove(entity);
+            _context.SaveChanges();
         }
 
         public void Update(Product product)
         {
-            //var entity = GetProductById(product.Id);
-
-            //entity.Name = product.Name;
-            //entity.Description = product.Description;
-            //entity.CostPrice = product.CostPrice;
-            //entity.SellingPrice = product.SellingPrice;
-            //entity.QtyInStock = product.QtyInStock;
-            //entity.Category = product.Category;
-
             _context.Products.Update(product);
+            _context.SaveChanges();
         }
     }
 }
