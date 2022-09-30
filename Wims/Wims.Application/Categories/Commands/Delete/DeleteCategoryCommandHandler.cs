@@ -1,4 +1,5 @@
 ﻿using ErrorOr;
+using MapsterMapper;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 using Wims.Application.Categories.Common;
 using Wims.Application.Common.Interfaces.Persistance;
 using Wims.Domain.Common.Errors;
+using Wims.Domain.DTOs;
 using Wims.Domain.Entities;
 
 namespace Wims.Application.Categories.Commands.Delete
@@ -15,10 +17,12 @@ namespace Wims.Application.Categories.Commands.Delete
     public class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryCommand, ErrorOr<CategoryResult>>
     {
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IMapper _mapper;
 
-        public DeleteCategoryCommandHandler(ICategoryRepository categoryRepository)
+        public DeleteCategoryCommandHandler(ICategoryRepository categoryRepository, IMapper mapper)
         {
             _categoryRepository = categoryRepository;
+            _mapper = mapper;
         }
 
         public async Task<ErrorOr<CategoryResult>> Handle(DeleteCategoryCommand command, CancellationToken cancellationToken)
@@ -33,10 +37,10 @@ namespace Wims.Application.Categories.Commands.Delete
             {
                 try
                 {
-                    var temp = category;
+                    var categoryDTO = _mapper.Map<CategoryDTO>(category);
 
                     _categoryRepository.Delete(command.Id);
-                    return new CategoryResult(temp, "Deleted");
+                    return new CategoryResult(categoryDTO, "Deleted");
                 }
                 catch (Exception)
                 { 

@@ -1,8 +1,10 @@
 ﻿using ErrorOr;
+using MapsterMapper;
 using MediatR;
 using Wims.Application.Categories.Common;
 using Wims.Application.Common.Interfaces.Persistance;
 using Wims.Domain.Common.Errors;
+using Wims.Domain.DTOs;
 using Wims.Domain.Entities;
 
 namespace Wims.Application.Categories.Commands.Update
@@ -10,10 +12,12 @@ namespace Wims.Application.Categories.Commands.Update
     public class UpdateCategoryCommandHandler : IRequestHandler<UpdateCategoryCommand, ErrorOr<CategoryResult>>
     {
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IMapper _mapper;
 
-        public UpdateCategoryCommandHandler(ICategoryRepository categoryRepository)
+        public UpdateCategoryCommandHandler(ICategoryRepository categoryRepository, IMapper mapper)
         {
             _categoryRepository = categoryRepository;
+            _mapper = mapper;
         }
 
         public async Task<ErrorOr<CategoryResult>> Handle(UpdateCategoryCommand command, CancellationToken cancellationToken)
@@ -35,8 +39,9 @@ namespace Wims.Application.Categories.Commands.Update
 
             try
             {
+                var categoryDTO = _mapper.Map<CategoryDTO>(category);
                 _categoryRepository.Update(category);
-                return new CategoryResult(category, "Updated");
+                return new CategoryResult(categoryDTO, "Updated");
             }
             catch (Exception)
             {

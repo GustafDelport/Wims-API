@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MapsterMapper;
+using Microsoft.EntityFrameworkCore;
 using System.Xml.Linq;
 using Wims.Application.Common.Interfaces.Persistance;
+using Wims.Domain.DTOs;
 using Wims.Domain.Entities;
 using Wims.Infrastructure.Database_Access;
 
@@ -9,38 +11,46 @@ namespace Wims.Infrastructure.Persistance
     public class ProductRepository : IProductRepository
     {
         private readonly DatabaseContext _context;
+        private readonly IMapper _mapper;
 
-        public ProductRepository(DatabaseContext context)
+        public ProductRepository(DatabaseContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        public ICollection<Product> GetAll()
+        public ICollection<ProductDTO> GetAll()
         {
             var products = _context.Products
                 .Include(p => p.Category)
                 .Select(x => x)
                 .ToList();
 
-            return products;
+            var productDTOs = products.Select(p => _mapper.Map<ProductDTO>(p)).ToList();
+
+            return productDTOs;
         }
 
-        public Product? GetProductById(Guid Id)
+        public ProductDTO? GetProductDTOById(Guid Id)
         {
             var product = _context.Products
                 .Include(p => p.Category)
                 .FirstOrDefault(x => x.Id == Id);
 
-            return product;
+            var productDTO = _mapper.Map<ProductDTO>(product);
+
+            return productDTO;
         }
 
-        public Product? GetProductByName(string Name)
+        public ProductDTO? GetProductDTOByName(string Name)
         {
             var product = _context.Products
                 .Include(p => p.Category)
                 .FirstOrDefault(x => x.Name == Name);
 
-            return product;
+            var productDTO = _mapper.Map<ProductDTO>(product);
+
+            return productDTO;
         }
 
         public void Add(Product product)
@@ -60,6 +70,24 @@ namespace Wims.Infrastructure.Persistance
         {
             _context.Products.Update(product);
             _context.SaveChanges();
+        }
+
+        Product? IProductRepository.GetProductByName(string Name)
+        {
+            var product = _context.Products
+                .Include(p => p.Category)
+                .FirstOrDefault(x => x.Name == Name);
+
+            return product;
+        }
+
+        Product? IProductRepository.GetProductById(Guid Id)
+        {
+            var product = _context.Products
+                .Include(p => p.Category)
+                .FirstOrDefault(x => x.Id == Id);
+
+            return product;
         }
     }
 }

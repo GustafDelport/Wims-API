@@ -1,8 +1,10 @@
 ﻿using ErrorOr;
+using MapsterMapper;
 using MediatR;
 using Wims.Application.Common.Interfaces.Persistance;
 using Wims.Application.Users.Common;
 using Wims.Domain.Common.Errors;
+using Wims.Domain.DTOs;
 using Wims.Domain.Entities;
 
 namespace Wims.Application.Users.Commands.Delete
@@ -10,10 +12,12 @@ namespace Wims.Application.Users.Commands.Delete
     public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, ErrorOr<UserResult>>
     {
         private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
 
-        public DeleteUserCommandHandler(IUserRepository userRepository)
+        public DeleteUserCommandHandler(IUserRepository userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
+            _mapper = mapper;
         }
 
         public async Task<ErrorOr<UserResult>> Handle(DeleteUserCommand command, CancellationToken cancellationToken)
@@ -29,10 +33,10 @@ namespace Wims.Application.Users.Commands.Delete
             {
                 try
                 {
-                    var temp = user;
+                    var userDTO = _mapper.Map<UserDTO>(user);
 
                     _userRepository.Delete(command.Id);
-                    return new UserResult(temp, "Deleted");
+                    return new UserResult(userDTO, "Deleted");
                 }
                 catch (Exception)
                 {

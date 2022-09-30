@@ -12,13 +12,6 @@ namespace Wims.Api.Common.Mapping.Product
         {
             config.NewConfig<ProductsResult, ProductsResponse>()
                 .Map(dest => dest, src => src.Products);
-
-
-            config.NewConfig<ProductResult, ProductResponse>()
-                .Map(dest => dest, src => src.Product)
-                .Map(dest => dest.CategoryId, src => src.Product.Category.Id)
-                .Map(dest => dest.CategoryName, src => src.Product.Category.Name)
-                .Map(dest => dest.CategoryDescription, src => src.Product.Category.Description);
         }
     }
 }

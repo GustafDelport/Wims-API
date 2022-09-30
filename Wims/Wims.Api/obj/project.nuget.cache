@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "NkIV2Ms3vXI1r1RBnwse9aAE4ovl6+eQ6fH0LDru1ujLoj35frHc7cJuU1Cm4d0/5hUvUpSWXOc80M6X+8iNrg==",
+  "dgSpecHash": "cfYQeHBVmqPRhOnk1XQnnPiInYw47l1ip5bzegXlwDRhc7aiOdb2yub0y5eZdo43ryQY4vp7f3o69WaiSTcYhg==",
   "success": true,
   "projectFilePath": "C:\\Users\\gustaf.delport\\OneDrive - Entelect Software (Pty) Ltd\\Documents\\Pet Projects\\Wims\\Wims-API\\Wims\\Wims.Api\\Wims.Api.csproj",
   "expectedPackageFiles": [
@@ -13,7 +13,7 @@
     "C:\\Users\\gustaf.delport\\.nuget\\packages\\mapster\\7.3.0\\mapster.7.3.0.nupkg.sha512",
     "C:\\Users\\gustaf.delport\\.nuget\\packages\\mapster.core\\1.2.0\\mapster.core.1.2.0.nupkg.sha512",
     "C:\\Users\\gustaf.delport\\.nuget\\packages\\mapster.dependencyinjection\\1.0.0\\mapster.dependencyinjection.1.0.0.nupkg.sha512",
-    "C:\\Users\\gustaf.delport\\.nuget\\packages\\mediatr\\10.0.1\\mediatr.10.0.1.nupkg.sha512",
+    "C:\\Users\\gustaf.delport\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
     "C:\\Users\\gustaf.delport\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
     "C:\\Users\\gustaf.delport\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\10.0.1\\mediatr.extensions.microsoft.dependencyinjection.10.0.1.nupkg.sha512",
     "C:\\Users\\gustaf.delport\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.9\\microsoft.aspnetcore.authentication.jwtbearer.6.0.9.nupkg.sha512",

@@ -1,8 +1,8 @@
-﻿using Wims.Domain.Entities;
+﻿using Wims.Domain.DTOs;
 
 namespace Wims.Application.Products.Common
 {
     public record ProductResult(
-        Product Product,
+        ProductDTO Product,
         string? Result);
 }

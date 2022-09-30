@@ -1,8 +1,10 @@
 ﻿using ErrorOr;
+using MapsterMapper;
 using MediatR;
 using Wims.Application.Common.Interfaces.Persistance;
 using Wims.Application.Products.Common;
 using Wims.Domain.Common.Errors;
+using Wims.Domain.DTOs;
 using Wims.Domain.Entities;
 
 namespace Wims.Application.Products.Commands.Update
@@ -10,12 +12,14 @@ namespace Wims.Application.Products.Commands.Update
     public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, ErrorOr<ProductResult>>
     {
         private readonly IProductRepository _productRepository;
-        private readonly ICategoryRepository _categoryRepository;
+        private readonly ICategoryRepository _categoryRepository; 
+        private readonly IMapper _mapper;
 
-        public UpdateProductCommandHandler(IProductRepository productRepository, ICategoryRepository categoryRepository)
+        public UpdateProductCommandHandler(IProductRepository productRepository, ICategoryRepository categoryRepository, IMapper mapper)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
+            _mapper = mapper;
         }
 
         public async Task<ErrorOr<ProductResult>> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
@@ -48,8 +52,9 @@ namespace Wims.Application.Products.Commands.Update
 
             try
             {
+                var productDTO = _mapper.Map<ProductDTO>(product);
                 _productRepository.Update(product);
-                return new ProductResult(product, "Updated");
+                return new ProductResult(productDTO, "Updated");
             }
             catch (Exception)
             {
