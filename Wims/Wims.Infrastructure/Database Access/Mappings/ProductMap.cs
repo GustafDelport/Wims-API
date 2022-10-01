@@ -45,7 +45,8 @@ namespace Wims.Infrastructure.Database_Access.Mappings
                 .HasColumnType("int");
 
             builder.HasOne(p => p.Category)
-                .WithMany(c => c.Products);
+                .WithMany(c => c.Products)
+                .HasForeignKey(p => p.CategoryId);
         }
     }
 }

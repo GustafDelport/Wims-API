@@ -1,32 +1,51 @@
-﻿using Wims.Application.Common.Interfaces.Persistance;
+﻿using MapsterMapper;
+using Wims.Application.Common.Interfaces.Persistance;
+using Wims.Domain.DTOs;
 using Wims.Domain.Entities;
 using Wims.Infrastructure.Database_Access;
+using static Wims.Domain.Common.Errors.Errors;
+using User = Wims.Domain.Entities.User;
 
 namespace Wims.Infrastructure.Persistance
 {
     public class UserRepository : IUserRepository
     {
         private readonly DatabaseContext _context;
+        private readonly IMapper _mapper;
 
-        public UserRepository(DatabaseContext context)
+        public UserRepository(DatabaseContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        public ICollection<User> GetAll()
+        public ICollection<UserDTO> GetAll()
         {
-            return _context.Users.Select(x => x).ToList();
+            var users = _context.Users
+            .Select(x => x)
+            .ToList();
+
+            var usersDTOs = users.Select(u => _mapper.Map<UserDTO>(u)).ToList();
+
+            return usersDTOs;
         }
 
-        public User GetUserById(Guid Id)
+        public UserDTO GetUserDTOById(Guid Id)
         {
-            return _context.Users.SingleOrDefault(u => u.Id == Id);
+            var user = _context.Users
+                .SingleOrDefault(u => u.Id == Id);
+
+            var userDTO = _mapper.Map<UserDTO>(user);
+            return userDTO;
         }
 
-        public User GetUserByEmail(string email)
+        public UserDTO GetUserDTOByEmail(string email)
         {
-            var user = _context.Users.SingleOrDefault(u => u.Email == email);
-            return user;
+            var user = _context.Users
+                .SingleOrDefault(u => u.Email == email);
+
+            var userDTO = _mapper.Map<UserDTO>(user);
+            return userDTO;
         }
 
         public void Add(User user)
@@ -47,6 +66,22 @@ namespace Wims.Infrastructure.Persistance
         {
             _context.Update(user);
             _context.SaveChanges();
+        }
+
+        User? IUserRepository.GetUserByEmail(string email)
+        {
+            var user = _context.Users
+                .SingleOrDefault(u => u.Email == email);
+
+            return user;
+        }
+
+        User? IUserRepository.GetUserById(Guid Id)
+        {
+            var user = _context.Users
+                .SingleOrDefault(u => u.Id == Id);
+
+            return user;
         }
     }
 }

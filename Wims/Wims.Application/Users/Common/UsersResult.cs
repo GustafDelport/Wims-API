@@ -1,7 +1,8 @@
-﻿using Wims.Domain.Entities;
+﻿using Wims.Domain.DTOs;
+using Wims.Domain.Entities;
 
 namespace Wims.Application.Users.Common
 {
     public record UsersResult(
-        ICollection<User> Users);
+        ICollection<UserDTO> Users);
 }

@@ -4,6 +4,6 @@ namespace Wims.Application.Common.Interfaces.Authentication
 {
     public interface IJwtTokenGenerator
     {
-        string GenerateToken(Domain.Entities.User user);
+        string GenerateToken(User user);
     }
 }

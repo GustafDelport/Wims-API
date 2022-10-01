@@ -1,6 +1,7 @@
 ﻿namespace Wims.Contracts.Product.Responses
 {
-    public record ProductsResponse(Guid Id,
+    public record ProductsResponse(
+        Guid Id,
         string Name,
         string Description,
         double SellingPrice,

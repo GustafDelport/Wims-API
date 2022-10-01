@@ -1,8 +1,9 @@
-﻿using Wims.Domain.Entities;
+﻿using Wims.Domain.DTOs;
+using Wims.Domain.Entities;
 
 namespace Wims.Application.Users.Common
 {
     public record UserResult(
-        User User,
+        UserDTO User,
         string? Result);
 }

@@ -1,4 +1,5 @@
 ﻿using ErrorOr;
+using MapsterMapper;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 using Wims.Application.Common.Interfaces.Persistance;
 using Wims.Application.Products.Common;
 using Wims.Domain.Common.Errors;
+using Wims.Domain.DTOs;
 using Wims.Domain.Entities;
 
 namespace Wims.Application.Products.Commands.Delete
@@ -15,10 +17,12 @@ namespace Wims.Application.Products.Commands.Delete
     public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand, ErrorOr<ProductResult>>
     {
         private readonly IProductRepository _productRepository;
+        private readonly IMapper _mapper;
 
-        public DeleteProductCommandHandler(IProductRepository productRepository)
+        public DeleteProductCommandHandler(IProductRepository productRepository, IMapper mapper)
         {
             _productRepository = productRepository;
+            _mapper = mapper;
         }
 
         public async Task<ErrorOr<ProductResult>> Handle(DeleteProductCommand command, CancellationToken cancellationToken)
@@ -33,10 +37,10 @@ namespace Wims.Application.Products.Commands.Delete
             {
                 try
                 {
-                    var temp = product;
+                    var productDTO = _mapper.Map<ProductDTO>(product);
 
                     _productRepository.Delete(product.Id);
-                    return new ProductResult(temp, "Deleted");
+                    return new ProductResult(productDTO, "Deleted");
                 }
                 catch (Exception)
                 {

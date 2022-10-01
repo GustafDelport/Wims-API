@@ -33,7 +33,7 @@ namespace Wims.Api.Controllers
             ErrorOr<ProductResult> response = await _mediator.Send(query);
 
             return response.Match(
-                response => Ok(_mapper.Map<ProductResponse>(response)),
+                response => Ok(response),
                 errors => Problem(errors));
         }
 
@@ -55,7 +55,7 @@ namespace Wims.Api.Controllers
             ErrorOr<ProductResult> response = await _mediator.Send(command);
 
             return response.Match(
-                response => Ok(_mapper.Map<ProductResponse>(response)),
+                response => Ok(response),
                 errors => Problem(errors));
         }
 
@@ -67,7 +67,7 @@ namespace Wims.Api.Controllers
             ErrorOr<ProductResult> response = await _mediator.Send(command);
 
             return response.Match(
-                response => Ok(_mapper.Map<ProductResponse>(response)),
+                response => Ok(response),
                 errors => Problem(errors));
         }
 
@@ -79,7 +79,7 @@ namespace Wims.Api.Controllers
             ErrorOr<ProductResult> response = await _mediator.Send(command);
 
             return response.Match(
-                response => Ok(_mapper.Map<ProductResponse>(response)),
+                response => Ok(response),
                 errors => Problem(errors));
         }
     }

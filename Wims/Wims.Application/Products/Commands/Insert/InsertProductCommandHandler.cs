@@ -1,8 +1,10 @@
 ﻿using ErrorOr;
+using MapsterMapper;
 using MediatR;
 using Wims.Application.Common.Interfaces.Persistance;
 using Wims.Application.Products.Common;
 using Wims.Domain.Common.Errors;
+using Wims.Domain.DTOs;
 using Wims.Domain.Entities;
 
 namespace Wims.Application.Products.Commands.Insert
@@ -11,11 +13,13 @@ namespace Wims.Application.Products.Commands.Insert
     {
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IMapper _mapper;
 
-        public InsertProductCommandHandler(IProductRepository productRepository, ICategoryRepository categoryRepository)
+        public InsertProductCommandHandler(IProductRepository productRepository, ICategoryRepository categoryRepository, IMapper mapper)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
+            _mapper = mapper;
         }
 
         public async Task<ErrorOr<ProductResult>> Handle(InsertProductCommand command, CancellationToken cancellationToken)
@@ -46,8 +50,10 @@ namespace Wims.Application.Products.Commands.Insert
 
             try
             {
+                var productDTO = _mapper.Map<ProductDTO>(product);
+
                 _productRepository.Add(product);
-                return new ProductResult(product, "Inserted");
+                return new ProductResult(productDTO, "Inserted");
             }
             catch (Exception)
             {

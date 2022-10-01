@@ -26,9 +26,6 @@ namespace Wims.Infrastructure.Database_Access.Mappings
                 .IsRequired()
                 .HasColumnName("Description")
                 .HasColumnType("varchar(250)");
-
-            builder.HasMany(c => c.Products)
-                .WithOne(p => p.Category);
         }
     }
 }

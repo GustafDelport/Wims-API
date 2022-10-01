@@ -12,7 +12,7 @@ using Wims.Infrastructure.Database_Access;
 namespace Wims.Infrastructure.Migrations.initial
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220929064859_InitialCreate")]
+    [Migration("20220929074205_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Wims.Contracts.Category.Requests
 {
-    public record InsertRequest(
+    public record InsertCategoryRequest(
         string Name,
         string Description);
 }

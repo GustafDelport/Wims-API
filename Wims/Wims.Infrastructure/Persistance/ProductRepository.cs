@@ -1,5 +1,8 @@
-﻿using System.Xml.Linq;
+﻿using MapsterMapper;
+using Microsoft.EntityFrameworkCore;
+using System.Xml.Linq;
 using Wims.Application.Common.Interfaces.Persistance;
+using Wims.Domain.DTOs;
 using Wims.Domain.Entities;
 using Wims.Infrastructure.Database_Access;
 
@@ -8,25 +11,46 @@ namespace Wims.Infrastructure.Persistance
     public class ProductRepository : IProductRepository
     {
         private readonly DatabaseContext _context;
+        private readonly IMapper _mapper;
 
-        public ProductRepository(DatabaseContext context)
+        public ProductRepository(DatabaseContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        public ICollection<Product> GetAll()
+        public ICollection<ProductDTO> GetAll()
         {
-            return _context.Products.Select(x => x).ToList();
+            var products = _context.Products
+                .Include(p => p.Category)
+                .Select(x => x)
+                .ToList();
+
+            var productDTOs = products.Select(p => _mapper.Map<ProductDTO>(p)).ToList();
+
+            return productDTOs;
         }
 
-        public Product? GetProductById(Guid Id)
+        public ProductDTO? GetProductDTOById(Guid Id)
         {
-            return _context.Products.FirstOrDefault(p => p.Id == Id);
+            var product = _context.Products
+                .Include(p => p.Category)
+                .FirstOrDefault(x => x.Id == Id);
+
+            var productDTO = _mapper.Map<ProductDTO>(product);
+
+            return productDTO;
         }
 
-        public Product? GetProductByName(string Name)
+        public ProductDTO? GetProductDTOByName(string Name)
         {
-            return _context.Products.FirstOrDefault(p => p.Name == Name);
+            var product = _context.Products
+                .Include(p => p.Category)
+                .FirstOrDefault(x => x.Name == Name);
+
+            var productDTO = _mapper.Map<ProductDTO>(product);
+
+            return productDTO;
         }
 
         public void Add(Product product)
@@ -46,6 +70,24 @@ namespace Wims.Infrastructure.Persistance
         {
             _context.Products.Update(product);
             _context.SaveChanges();
+        }
+
+        Product? IProductRepository.GetProductByName(string Name)
+        {
+            var product = _context.Products
+                .Include(p => p.Category)
+                .FirstOrDefault(x => x.Name == Name);
+
+            return product;
+        }
+
+        Product? IProductRepository.GetProductById(Guid Id)
+        {
+            var product = _context.Products
+                .Include(p => p.Category)
+                .FirstOrDefault(x => x.Id == Id);
+
+            return product;
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using ErrorOr;
+using MapsterMapper;
 using MediatR;
 using Wims.Application.Common.Interfaces.Persistance;
 using Wims.Application.Users.Common;
 using Wims.Domain.Common.Errors;
+using Wims.Domain.DTOs;
 using Wims.Domain.Entities;
 
 namespace Wims.Application.Users.Commands.Update
@@ -10,10 +12,12 @@ namespace Wims.Application.Users.Commands.Update
     public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, ErrorOr<UserResult>>
     {
         private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
 
-        public UpdateUserCommandHandler(IUserRepository userRepository)
+        public UpdateUserCommandHandler(IUserRepository userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
+            _mapper = mapper;
         }
 
         public async Task<ErrorOr<UserResult>> Handle(UpdateUserCommand command, CancellationToken cancellationToken)
@@ -32,8 +36,9 @@ namespace Wims.Application.Users.Commands.Update
 
             try
             {
+                var userDTO = _mapper.Map<UserDTO>(user);
                 _userRepository.Update(user);
-                return new UserResult(user, "Updated");
+                return new UserResult(userDTO, "Updated");
             }
             catch (Exception)
             {

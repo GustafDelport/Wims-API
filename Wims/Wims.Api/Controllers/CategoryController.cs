@@ -33,7 +33,7 @@ namespace Wims.Api.Controllers
             ErrorOr<CategoryResult> response = await _mediator.Send(query);
 
             return response.Match(
-                response => Ok(_mapper.Map<CategoryResponse>(response)),
+                response => Ok(response),
                 errors => Problem(errors));
         }
 
@@ -48,14 +48,14 @@ namespace Wims.Api.Controllers
         }
 
         [HttpPost("Insert")]
-        public async Task<IActionResult> InsertCategoryAsync(InsertRequest request)
+        public async Task<IActionResult> InsertCategoryAsync(InsertCategoryRequest request)
         {
             var command = _mapper.Map<InsertCategoryCommand>(request);
 
             ErrorOr<CategoryResult> response = await _mediator.Send(command);
 
             return response.Match(
-                response => Ok(_mapper.Map<CategoryResponse>(response)),
+                response => Ok(response),
                 errors => Problem(errors));
         }
 
@@ -67,7 +67,7 @@ namespace Wims.Api.Controllers
             ErrorOr<CategoryResult> response = await _mediator.Send(command);
 
             return response.Match(
-                response => Ok(_mapper.Map<CategoryResponse>(response)),
+                response => Ok(response),
                 errors => Problem(errors));
         }
 
@@ -79,7 +79,7 @@ namespace Wims.Api.Controllers
             ErrorOr<CategoryResult> response = await _mediator.Send(command);
 
             return response.Match(
-                response => Ok(_mapper.Map<CategoryResponse>(response)),
+                response => Ok(response),
                 errors => Problem(errors));
         }
     }

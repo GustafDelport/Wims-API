@@ -10,11 +10,8 @@ namespace Wims.Api.Common.Mapping.Product
     {
         public void Register(TypeAdapterConfig config)
         {
-            config.NewConfig<ProductResult, ProductResponse>()
-                .Map(dest => dest, src => src.Product)
-                .Map(dest => dest.CategoryId, src => src.Product.Category.Id)
-                .Map(dest => dest.CategoryName, src => src.Product.Category.Name)
-                .Map(dest => dest.CategoryDescription, src => src.Product.Category.Description);
+            config.NewConfig<ProductsResult, ProductsResponse>()
+                .Map(dest => dest, src => src.Products);
         }
     }
 }
