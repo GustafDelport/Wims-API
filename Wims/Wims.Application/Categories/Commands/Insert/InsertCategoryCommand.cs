@@ -7,5 +7,6 @@ namespace Wims.Application.Categories.Commands.Insert
 {
     public record InsertCategoryCommand(
         string Name,
-        string Description) : IRequest<ErrorOr<CategoryResult>>;
+        string Description,
+        int MinThreshold) : IRequest<ErrorOr<CategoryResult>>;
 }

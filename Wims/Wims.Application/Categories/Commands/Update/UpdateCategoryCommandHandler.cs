@@ -36,6 +36,7 @@ namespace Wims.Application.Categories.Commands.Update
 
             category.Name = string.IsNullOrEmpty(command.Name) ? category.Name : command.Name;
             category.Description = string.IsNullOrEmpty(command.Description) ? category.Description : command.Description;
+            category.MinThreshold = command.MinThreshold;
 
             try
             {
