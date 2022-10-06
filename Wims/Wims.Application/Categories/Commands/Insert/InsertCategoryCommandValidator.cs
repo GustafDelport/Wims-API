@@ -21,6 +21,10 @@ namespace Wims.Application.Categories.Commands.Insert
                 .NotEmpty().WithMessage("Category description should not be empty")
                 .MinimumLength(5).WithMessage("Category description should be atleast 5 characters long.")
                 .MaximumLength(250).WithMessage("Category description should be a maximum of 250 characters.");
+
+            RuleFor(x => x.MinThreshold)
+                .NotEmpty().WithMessage("A minimum threshold is required")
+                .GreaterThanOrEqualTo(x => 0).WithMessage("The minimum threshold should not be a negative number");
         }
     }
 }
