@@ -3,6 +3,5 @@
     public record UpdateCategoryRequest(
         Guid id,
         string? Name,
-        string? Description,
-        int? MinThreshold);
+        string? Description);
 }

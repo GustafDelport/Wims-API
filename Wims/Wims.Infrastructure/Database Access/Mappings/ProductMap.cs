@@ -44,6 +44,11 @@ namespace Wims.Infrastructure.Database_Access.Mappings
                 .HasColumnName("QtyInStock")
                 .HasColumnType("int");
 
+            builder.Property(p => p.MinThreshold)
+                .IsRequired()
+                .HasColumnName("MinThreshold")
+                .HasColumnType("int");
+
             builder.HasOne(p => p.Category)
                 .WithMany(c => c.Products)
                 .HasForeignKey(p => p.CategoryId);

@@ -45,6 +45,7 @@ namespace Wims.Application.Products.Commands.Insert
                 SellingPrice = command.SellingPrice,
                 CostPrice = command.CostPrice,
                 QtyInStock = command.QtyInStock,
+                MinThreshold = command.MinThreshold,
                 Category = category
             };
 

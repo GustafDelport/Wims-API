@@ -11,6 +11,7 @@ namespace Wims.Domain.DTOs
         public double SellingPrice { get; set; }
         public double CostPrice { get; set; }
         public int QtyInStock { get; set; }
+        public int MinThreshold { get; set; }
         public CategoryDTO Category { get; set; }
     }
 }

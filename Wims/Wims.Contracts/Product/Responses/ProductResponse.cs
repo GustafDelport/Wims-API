@@ -7,6 +7,7 @@
         double SellingPrice,
         double CostPrice,
         int QtyInStock,
+        int MinThreshold,
 
         Guid CategoryId,
         string CategoryName,
