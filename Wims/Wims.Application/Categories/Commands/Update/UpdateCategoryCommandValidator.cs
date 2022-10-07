@@ -21,10 +21,6 @@ namespace Wims.Application.Categories.Commands.Update
                 .MaximumLength(250).WithMessage("Category description should be a maximum of 250 characters.")
                 .When(x => !string.IsNullOrEmpty(x.Description));
 
-            RuleFor(x => x.MinThreshold)
-                .GreaterThanOrEqualTo(x => 0).WithMessage("The minimum threshold should not be a negative number")
-                .When(x => x.MinThreshold >= 0);
-
         }
     }
 }

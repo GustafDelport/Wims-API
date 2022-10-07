@@ -22,11 +22,6 @@ namespace Wims.Infrastructure.Database_Access.Mappings
                 .HasColumnName("Name")
                 .HasColumnType("varchar(25)");
 
-            builder.Property(c => c.MinThreshold)
-                .IsRequired()
-                .HasColumnName("MinThreshold")
-                .HasColumnType("int");
-
             builder.Property(c => c.Description)
                 .IsRequired()
                 .HasColumnName("Description")

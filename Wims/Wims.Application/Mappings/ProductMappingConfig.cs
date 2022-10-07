@@ -23,6 +23,7 @@ namespace Wims.Application.Mappings
                 .Map(dest => dest.SellingPrice, src => src.SellingPrice)
                 .Map(dest => dest.CostPrice, src => src.CostPrice)
                 .Map(dest => dest.QtyInStock, src => src.QtyInStock)
+                .Map(dest => dest.MinThreshold, src => src.MinThreshold)
                 .Map(dest => dest.Category, src => _mapper.Map<CategoryDTO>(src.Category));
         }
     }

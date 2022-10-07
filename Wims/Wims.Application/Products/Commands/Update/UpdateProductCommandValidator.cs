@@ -30,6 +30,10 @@ namespace Wims.Application.Products.Commands.Update
                 .GreaterThanOrEqualTo(0).WithMessage("The Quantity in stock should not be a negative number.")
                 .When(x => x.QtyInStock is not 0);
 
+            RuleFor(x => x.MinThreshold)
+                .GreaterThanOrEqualTo(x => 0).WithMessage("The minimum threshold should not be a negative number")
+                .When(x => x.MinThreshold >= 0);
+
             RuleFor(x => x.CategoryName)
                 .MinimumLength(3).WithMessage("Category name should be atleast 3 characters long.")
                 .MaximumLength(15).WithMessage("Category name should be a maximum of 15 characters.")

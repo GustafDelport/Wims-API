@@ -48,7 +48,9 @@ namespace Wims.Application.Products.Commands.Update
             product.SellingPrice = (product.SellingPrice == command.SellingPrice) ? product.SellingPrice : command.SellingPrice;
             product.CostPrice = (product.CostPrice == command.CostPrice) ? product.CostPrice : command.CostPrice;
             product.QtyInStock = (product.QtyInStock == command.QtyInStock) ? product.QtyInStock : command.QtyInStock;
-            product.Category = (product.Category == category) ? product.Category : category;          
+            product.MinThreshold = (product.MinThreshold == command.MinThreshold) ? product.MinThreshold : command.MinThreshold;
+            product.Category = (product.Category == category) ? product.Category : category;
+            
 
             try
             {

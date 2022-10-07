@@ -32,6 +32,10 @@ namespace Wims.Application.Products.Commands.Insert
             RuleFor(x => x.QtyInStock)
                 .GreaterThanOrEqualTo(0).WithMessage("The Quantity in stock should not be a negative number.");
 
+            RuleFor(x => x.MinThreshold)
+                .NotEmpty().WithMessage("A minimum threshold is required")
+                .GreaterThanOrEqualTo(x => 0).WithMessage("The minimum threshold should not be a negative number");
+
 
             RuleFor(x => x.CategoryName)
                 .NotEmpty().WithMessage("Category name should not be empty")

@@ -32,8 +32,7 @@ namespace Wims.Application.Categories.Commands.Insert
             var category = new Category
             {
                 Name = command.Name,
-                Description = command.Description,
-                MinThreshold = command.MinThreshold
+                Description = command.Description
             };
 
             var categoryDTO = _mapper.Map<CategoryDTO>(category);

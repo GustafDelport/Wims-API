@@ -12,5 +12,6 @@ namespace Wims.Contracts.Product.Requests
         double SellingPrice,
         double CostPrice,
         int QtyInStock,
-        string CategoryName);
+        string CategoryName,
+        int MinThreshold);
 }
