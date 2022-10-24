@@ -5,6 +5,8 @@ using Wims.Application.Common.Interfaces.Persistance;
 using Wims.Application.Authentication.Common;
 using Wims.Domain.Common.Errors;
 using Wims.Domain.Entities;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Wims.Application.Authentication.Commands.Register
 {
@@ -31,13 +33,15 @@ namespace Wims.Application.Authentication.Commands.Register
                 return Errors.User.DuplicateEmail;
             }
 
+            var hashPassword = GetHashString(command.Password);
+
             //Persits user to repository
             var user = new User
             {
                 FirstName = command.FirstName,
                 LastName = command.LastName,
                 Email = command.Email,
-                Password = command.Password
+                Password = hashPassword
             };
 
             _userRepository.Add(user);
@@ -48,6 +52,21 @@ namespace Wims.Application.Authentication.Commands.Register
             return new AuthenticationResult(
                 user,
                 token);
+        }
+
+        public static byte[] GetHash(string inputString)
+        {
+            using (HashAlgorithm algorithm = SHA256.Create())
+                return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
+        }
+
+        public static string GetHashString(string inputString)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in GetHash(inputString))
+                sb.Append(b.ToString("X2"));
+
+            return sb.ToString();
         }
     }
 }

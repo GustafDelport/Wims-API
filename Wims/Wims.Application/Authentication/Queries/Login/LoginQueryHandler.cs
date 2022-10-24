@@ -5,6 +5,8 @@ using Wims.Application.Common.Interfaces.Persistance;
 using Wims.Application.Authentication.Common;
 using Wims.Domain.Common.Errors;
 using Wims.Domain.Entities;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Wims.Application.Authentication.Queries.Login
 {
@@ -32,8 +34,10 @@ namespace Wims.Application.Authentication.Queries.Login
                 return Errors.Authentication.InvalidCredentials;
             }
 
+            var hashPassword = GetHashString(query.Password);
+
             //Check if password is correct
-            if (user.Password != query.Password)
+            if (user.Password != hashPassword)
             {
                 return Errors.Authentication.InvalidCredentials;
             }
@@ -44,6 +48,21 @@ namespace Wims.Application.Authentication.Queries.Login
             return new AuthenticationResult(
                 user,
                 token);
+        }
+
+        public static byte[] GetHash(string inputString)
+        {
+            using (HashAlgorithm algorithm = SHA256.Create())
+                return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
+        }
+
+        public static string GetHashString(string inputString)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in GetHash(inputString))
+                sb.Append(b.ToString("X2"));
+
+            return sb.ToString();
         }
     }
 }
