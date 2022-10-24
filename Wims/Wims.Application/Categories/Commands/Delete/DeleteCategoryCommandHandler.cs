@@ -1,11 +1,6 @@
 ﻿using ErrorOr;
 using MapsterMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Wims.Application.Categories.Common;
 using Wims.Application.Common.Interfaces.Persistance;
 using Wims.Domain.Common.Errors;

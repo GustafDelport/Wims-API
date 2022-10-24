@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Wims.Domain.Interfaces;
+﻿using Wims.Domain.Interfaces;
 
 namespace Wims.Domain.Entities
 {

@@ -8,7 +8,6 @@ using Wims.Application.Users.Common;
 using Wims.Application.Users.Queries.Retrieve;
 using Wims.Application.Users.Queries.RetrieveUser;
 using Wims.Contracts.User.Requests;
-using Wims.Contracts.User.Responses;
 
 namespace Wims.Api.Controllers
 {

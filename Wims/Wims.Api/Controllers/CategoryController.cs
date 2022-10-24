@@ -9,7 +9,6 @@ using Wims.Application.Categories.Common;
 using Wims.Application.Categories.Queries.RetrieveCategories;
 using Wims.Application.Categories.Queries.RetrieveCategory;
 using Wims.Contracts.Category.Requests;
-using Wims.Contracts.Category.Responses;
 
 namespace Wims.Api.Controllers
 {
