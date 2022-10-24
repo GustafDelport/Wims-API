@@ -9,7 +9,6 @@ using Wims.Application.Products.Common;
 using Wims.Application.Products.Queries.RetrieveProduct;
 using Wims.Application.Products.Queries.RetrieveProducts;
 using Wims.Contracts.Product.Requests;
-using Wims.Contracts.Product.Responses;
 
 namespace Wims.Api.Controllers
 {

@@ -1,7 +1,4 @@
-﻿using Wims.Domain.Entities;
-using Wims.Domain.Interfaces;
-
-namespace Wims.Domain.DTOs
+﻿namespace Wims.Domain.DTOs
 {
     public class ProductDTO
     {
