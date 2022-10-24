@@ -35,7 +35,7 @@ namespace Wims.Infrastructure.Database_Access.Mappings
             builder.Property(c => c.Password)
                 .IsRequired()
                 .HasColumnName("Password")
-                .HasColumnType("nvarchar(16)");
+                .HasColumnType("nvarchar(256)");
         }
     }
 }
