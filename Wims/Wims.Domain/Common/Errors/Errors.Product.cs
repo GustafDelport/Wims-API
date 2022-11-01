@@ -8,15 +8,15 @@ namespace Wims.Domain.Common.Errors
         {
             public static Error DuplicateProduct => Error.Conflict(
                 code: "Product.DuplicateProduct",
-                description: "Product already exists.");
+                description: "Product Already Exists.");
 
             public static Error NotFound => Error.NotFound(
                 code: "Product.NotFound",
-                description: "Product does not exists.");
+                description: "Product Does Not Exists.");
 
             public static Error Conflict => Error.Conflict(
                 code: "Product.Conflict",
-                description: "There was an error processing your request");
+                description: "There Was an Error Processing Your Request");
         }
     }
     
