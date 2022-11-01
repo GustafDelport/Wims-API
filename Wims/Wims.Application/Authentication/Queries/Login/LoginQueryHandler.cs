@@ -58,6 +58,7 @@ namespace Wims.Application.Authentication.Queries.Login
 
         public static string GetHashString(string inputString)
         {
+            //introduce salt but store it in a seperate data table
             StringBuilder sb = new StringBuilder();
             foreach (byte b in GetHash(inputString))
                 sb.Append(b.ToString("X2"));

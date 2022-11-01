@@ -8,7 +8,7 @@ namespace Wims.Domain.Common.Errors
         {
             public static Error InvalidCredentials => Error.Validation(
                 code: "Auth.InvalidCredentials",
-                description: "Invalid Credentials");          
+                description: "Invalid Credentials Ensure That Password or Username is Correct");          
         }
     }
 }
