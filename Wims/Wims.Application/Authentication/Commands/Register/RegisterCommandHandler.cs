@@ -35,7 +35,7 @@ namespace Wims.Application.Authentication.Commands.Register
 
             var hashPassword = GetHashString(command.Password);
 
-            //Persits user to repository
+            //persistance user to repository
             var user = new User
             {
                 FirstName = command.FirstName,
